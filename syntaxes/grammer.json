@@ -1,0 +1,92 @@
+{
+    "name": "SPL",
+    "scopeName": "source.spl",
+    "fileExtensions": ["spl"],
+    "uuid": "12345678-1234-5678-1234-567812345678",
+    "contexts": {
+      "main": [
+        { "include": "#keywords" },
+        { "include": "#atoms" },
+        { "include": "#operators" },
+        { "include": "#syntacticTokens" },
+        { "include": "#comments" },
+        { "include": "#statements" }
+      ],
+      "keywords": {
+        "name": "keyword.control.spl",
+        "match": "\\b(if|ifelse|while|read|write|lambda|new|true|false|and|or|not)\\b"
+      },
+      "atoms": [
+        {
+          "name": "constant.numeric.spl",
+          "match": "\\b[0-9]+\\b"
+        },
+        {
+          "name": "constant.language.spl",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "variable.parameter.spl",
+          "match": "\\b[a-zA-Z_][a-zA-Z_0-9]*\\b"
+        }
+      ],
+      "operators": {
+        "name": "keyword.operator.spl",
+        "match": "\\*|\\/|\\+|\\-|<|<=|=|>=|>|!=|and|or|not|@|:="
+      },
+      "syntacticTokens": {
+        "name": "punctuation.definition.group.spl",
+        "match": "[(){}]"
+      },
+      "comments": {
+        "name": "comment.line.spl",
+        "match": "\\#.*"
+      },
+      "statements": [
+        { "include": "#expression" },
+        { "include": "#assignment" },
+        { "include": "#write" },
+        { "include": "#if" },
+        { "include": "#ifelse" },
+        { "include": "#while" },
+        { "include": "#block" }
+      ],
+      "expression": {
+        "name": "meta.expression.spl",
+        "match": "(NUM|BOOL|ID|READ|LAMBDA|LP|RP|OPM|OPA|COMP|NOT|BOP)"
+      },
+      "assignment": {
+        "name": "variable.assignment.spl",
+        "match": "\\b(new\\s+[a-zA-Z_][a-zA-Z_0-9]*\\s*:|[a-zA-Z_][a-zA-Z_0-9]*\\s*:)"
+      },
+      "write": {
+        "name": "meta.write.spl",
+        "match": "\\b(write)\\s+exp"
+      },
+      "if": {
+        "name": "meta.if.spl",
+        "match": "\\b(if)\\s+exp block"
+      },
+      "ifelse": {
+        "name": "meta.ifelse.spl",
+        "match": "\\b(ifelse)\\s+exp block block"
+      },
+      "while": {
+        "name": "meta.while.spl",
+        "match": "\\b(while)\\s+exp block"
+      },
+      "block": {
+        "name": "meta.block.spl",
+        "match": "\\{ stlist \\}"
+      },
+      "lambda": {
+        "name": "meta.lambda.spl",
+        "match": "\\b(new)\\s+[a-zA-Z_][a-zA-Z_0-9]*\\s*:=(\\b(lambda)\\s+[a-zA-Z_][a-zA-Z_0-9]*\\s*\\{ stlist \\})"
+      },
+      "functionCall": {
+        "name": "meta.function.call.spl",
+        "match": "\\b[a-zA-Z_][a-zA-Z_0-9]*\\s+@\\s*exp"
+      }
+    }
+  }
+  
